@@ -7,7 +7,7 @@ body {
   color: #000000;
 }
 
-#hor-container {
+#ver-container {
   width: 500px;
   margin: auto;
   height: 100vh;
@@ -21,9 +21,47 @@ body {
   align-items: center;
 }
 
+#header {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  align-items:center;
+  overflow:hidden;
+  background-color: rgb(214, 214, 214);
+  border-bottom: 2px solid rgb(172, 172, 172);
+  z-index: 1;
+}
+
+#account {
+  text-align: center;
+}
+
+#account p {
+  font-size: 2rem;
+}
+
+#account-icon {
+  padding-right: 5px;
+}
+
+#sidebar {
+  height: 100vh;
+  width: 260px; /* Set the width of the sidebar */
+  position:relative;
+  bottom: 0; /* Fixed Sidebar (stay in place on scroll) */
+  background-color: rgb(214, 214, 214);
+  border-right: 2px solid rgb(172, 172, 172);
+  overflow-x: hidden; /* Disable horizontal scroll */
+  padding-left: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
 a {
   text-decoration: none;
   cursor: pointer;
+  color: blue;
+  width: fit-content;
 }
 
 button {
@@ -33,11 +71,37 @@ button {
 .b {
   border-radius: 9px;
   border: 0;
-  font-size: 15px;
+  font-size: 20px;
   background: #e6e6e6;
   padding: 10px 20px 10px 20px;
   text-decoration: none;
   transition: 0.3s;
+}
+
+.dropdown {
+  background: transparent;
+  border: none !important;
+  font-size: 1rem;
+  text-align: left;
+  width: fit-content;
+  padding: 0;
+}
+
+.dropdown-content {
+  display: none;
+  padding-left: 25px;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropIcon {
+  display: none;
+}
+
+.dropdown:hover .dropIcon {
+  display: inline;
 }
 
 .b:hover {
@@ -84,4 +148,10 @@ input {
 #back {
   padding-left: 10px;
   position: fixed;
+}
+
+h4 {
+  margin: 0;
+  margin-top: 12px;
+  width: fit-content;
 }

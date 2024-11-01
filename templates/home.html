@@ -1,9 +1,77 @@
 {% extends 'base.html' %}
 
 {% block head %}
-<title>SecureMe - Home</title>
+<title>OnGuard - Home</title>
 {% endblock %}
 
 {% block body %}
-<h3>Welcome back {{ current_user.username }}!</h3>
+<div id="header">
+    <img src="{{ url_for('static', filename='assets/images/logo.png') }}" height="50px" width="125px" style="padding-left: 5px;">
+    <div id="account">
+        {{ current_user.username }}
+        <img src="{{ url_for('static', filename='assets/images/account.svg') }}" height="30px" width="30px" id="account-icon">
+    </div>
+</div>
+<div id="sidebar">
+    <br>
+    <a href="{{ url_for('home') }}">
+        Home
+    </a><br>
+
+    <h4>Coursework</h4>
+
+    <div class="dropdown"><p>Section 1 <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
+        <span class="dropdown-content">
+            <p><a>1.1 - Introduction</a></p>
+            <p><a>1.2 - Secondary Introduction</a></p>
+            <p><a>1.3 - I Love Goth Girls</a></p>
+            <p><a>1.4 - Evan is Stupid</a></p>
+        </span>
+    </div>
+
+    <div class="dropdown"><p>Section 2 <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
+        <span class="dropdown-content">
+            <p><a>2.1 - Introduction</a></p>
+            <p><a>2.2 - Secondary Introduction</a></p>
+            <p><a>2.3 - I Love Goth Girls</a></p>
+            <p><a>2.4 - Evan is Stupid</a></p>
+        </span>
+    </div>
+
+    <div class="dropdown"><p>Section 3 <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
+        <span class="dropdown-content">
+            <p><a>3.1 - Introduction</a></p>
+            <p><a>3.2 - Secondary Introduction</a></p>
+            <p><a>3.3 - I Love Goth Girls</a></p>
+            <p><a>3.4 - Evan is Stupid</a></p>
+        </span>
+    </div>
+
+    <div class="dropdown"><p>Section 4 <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
+        <span class="dropdown-content">
+            <p><a>4.1 - Introduction</a></p>
+            <p><a>4.2 - Secondary Introduction</a></p>
+            <p><a>4.3 - I Love Goth Girls</a></p>
+            <p><a>4.4 - Evan is Stupid</a></p>
+        </span>
+    </div>
+
+    <div class="dropdown"><p>Section 5 <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
+        <span class="dropdown-content">
+            <p><a>5.1 - Introduction</a></p>
+            <p><a>5.2 - Secondary Introduction</a></p>
+            <p><a>5.3 - I Love Goth Girls</a></p>
+            <p><a>5.4 - Evan is Stupid</a></p>
+        </span>
+    </div>
+
+    <div class="dropdown"><p>Section 6 <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
+        <span class="dropdown-content">
+            <p><a>6.1 - Introduction</a></p>
+            <p><a>6.2 - Secondary Introduction</a></p>
+            <p><a>6.3 - I Love Goth Girls</a></p>
+            <p><a>6.4 - Evan is Stupid</a></p>
+        </span>
+    </div>
+</div>
 {% endblock %}
