@@ -1,0 +1,29 @@
+{% extends 'base-login.html' %}
+
+{% block head %}
+<title>SecureMe</title>
+{% endblock %}
+
+{% block body %}
+<div id="hor-container">
+    <img src="{{ url_for('static', filename='assets/images/logo.png') }}" height="100px" width="250px">
+    
+    <br><br><br><br><br>
+
+    <div>
+        <a href="{{ url_for('login') }}">
+            <button type="button" class="b">
+                Login
+            </button>
+        </a>
+
+        <span></span>
+        
+        <a href="{{ url_for('register') }}">
+            <button type="button" class="b">
+                Register
+            </button>
+        </a>
+    </div>
+</div>
+{% endblock %}

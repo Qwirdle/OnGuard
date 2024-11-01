@@ -1,0 +1,23 @@
+{% extends 'base-login.html' %}
+<!-- https://www.youtube.com/watch?v=dam0GPOAvVI has stuff on authentication and message flasking also use https://www.geeksforgeeks.org/login-and-registration-project-using-flask-and-mysql/-->
+{% block head %}
+<title>SecureMe - Login</title>
+{% endblock %}
+
+{% block body %}
+<a onclick="history.back()"><img src="{{ url_for('static', filename='assets/images/logo.png') }}" height="50px" width="125px" id="back"></a>
+
+<div id="hor-container">
+    <h2 class="imp">Login</h2>
+        
+    <form action="#" method="post">
+        <input type="hidden" name="csrf_token" value = "{{ csrf_token() }}" />
+        <input type="text" id="username" name="username" placeholder="Username"><br>
+        <input type="password" id="password" name="password" placeholder="Password"><br><br>
+        <button type="submit" class="b">Login</button>
+    </form>
+
+    <br>
+    <a href="{{ url_for('register') }}">No account? <strong>Register Here</strong></a>
+</div>
+{% endblock %}

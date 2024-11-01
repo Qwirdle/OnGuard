@@ -1,0 +1,99 @@
+{% extends 'base-login.html' %}
+
+{% block head %}
+<title>SecureMe - Register</title>
+{% endblock %}
+
+{% block body %}
+<a onclick="history.back()"><img src="{{ url_for('static', filename='assets/images/logo.png') }}" height="50px" width="125px" id="back"></a>
+
+<div id="hor-container">
+        <h2>Register</h2>
+        
+        <form action="#" method="post">
+            <!-- csrf token for form protection -->
+            <input type="hidden" name="csrf_token" value = "{{ csrf_token() }}" />  
+            <input type="text" id="username" name="username" placeholder="Username" required><br>
+            <input type="password" id="password" name="password" placeholder="Password" onchange="passwordValidator()" onkeypress="this.onchange();" onpaste="this.onchange();" oninput="this.onchange();"><br>
+            <input type="password" id="rpassword" name="rpassword" placeholder="Retype your password" required><br>
+            
+            <div id="passValContainer">
+                <!-- ids for reference in inline javascript -->
+                <span id="chars"><p style="margin:5px">8+ characters</p></span>
+                <span id="digits"><p style="margin:5px">Atleast 1 digit</p></span>
+                <span id="upper"><p style="margin:5px">Atleast 1 uppercase character</p></span>
+                <span id="lower"><p style="margin:5px">Atleast 1 lowercase character</p></span>
+                <span id="symbol"><p style="margin:5px">Atleast 1 symbol</p></span>
+            </div><br>
+
+            <input type="text" id="fname" name="fname" placeholder="First name" required><br>
+            <input type="text" id="lname" name="lname" placeholder="Last name" required><br><br>
+
+            <button type="submit" class="b" id="registerButton" disabled>Register</button>
+
+            <!-- basic password validator -->
+            <script>
+                function passwordValidator() {
+                  var password = document.getElementById("password").value;
+                  const button = document.getElementById("registerButton");
+                  // var to check if we should hide div
+                  var filtersPassed = 0;
+
+                  // check string length
+                  if (7 < password.length) {
+                    document.getElementById("chars").style.display = "none";
+                    ++filtersPassed;
+                  } else {
+                    document.getElementById("chars").style.display = "block";
+                  }
+
+                  // check digits
+                  if (/\d/.test(password)) {
+                    document.getElementById("digits").style.display = "none";
+                    ++filtersPassed;
+                  } else {
+                    document.getElementById("digits").style.display = "block";
+                  }
+
+                  // check uppercase
+                  if (/[A-Z]/.test(password)) {
+                    document.getElementById("upper").style.display = "none";
+                    ++filtersPassed;
+                  } else {
+                    document.getElementById("upper").style.display = "block";
+                  }
+
+                  // check uppercase
+                  if (/[a-z]/.test(password)) {
+                    document.getElementById("lower").style.display = "none";
+                    ++filtersPassed;
+                  } else {
+                    document.getElementById("lower").style.display = "block";
+                  }
+
+                  // check symbols
+                  if (/[^A-Za-z0-9]/.test(password)) {
+                    document.getElementById("symbol").style.display = "none";
+                    ++filtersPassed;
+                  } else {
+                    document.getElementById("symbol").style.display = "block";
+                  }
+                  
+                  // final mods if all filters are passed
+                  if (filtersPassed == 5) {
+                    document.getElementById("passValContainer").style.display = "none";
+                    document.getElementById("registerButton").removeAttribute("disabled");
+
+                  } else {
+                    document.getElementById("passValContainer").style.display = "block";
+                    document.getElementById("registerButton").setAttribute("disabled", "disabled");
+                  }
+                }
+            </script>
+        </form>
+        <br>
+        <a href="{{ url_for('login') }}">Already have an account? <strong>Login Here</strong></a>
+
+    </div>
+</div>
+{% endblock %}

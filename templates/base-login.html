@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<!-- don't remove - security protection -->
+{% autoescape true %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    {% block head %}{% endblock %}
+</head>
+<body>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <!-- span to avoid weird div props -->
+        <span>
+        {% for category, message in messages %}
+          <div class="flash-base {{ category }}">{{ message }}</div>
+        {% endfor %}
+        </span>
+      {% endif %}
+  {%  endwith %}
+  {% block body %}{% endblock %}
+  <script>
+    // quick password visibility function for login/registration
+    const password = document.getElementById("password");
+    password.addEventListener("focus", function() {password.type = "text";});
+    password.addEventListener("blur", function() {password.type = "password";});
+  </script>
+</body>
+{% endautoescape %}
+</html>
