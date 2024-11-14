@@ -140,10 +140,21 @@ def login():
 # login required integrates blocked part of page with login_manager
 @login_required
 def home():
-    # go through each db assignment score and see if it has been passed
     user = Users.query.filter_by(username=current_user.username).first()
     
     return render_template('home.html')
+
+@app.route('/progress/')
+@login_required
+def progress():
+    user = Users.query.filter_by(username=current_user.username).first()
+    
+    return render_template('progress.html')
+
+@app.route('/introToCyber/1.1')
+@login_required
+def impToCyber():
+    return render_template('/articles/1/1_1.html')
 
 # logout
 @app.route('/logout/')
