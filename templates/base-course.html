@@ -23,7 +23,7 @@
           </span>
         {% endif %}
     {%  endwith %}
-    <div id="header">
+    <div id="header" class="noisy">
         <img src="{{ url_for('static', filename='assets/images/logo.png') }}" height="65px" width="162.5px" style="padding-left: 5px;">
         <div id="account">
             {{ current_user.username }}
@@ -31,19 +31,19 @@
         </div>
     </div>
     <div id="content">
-        <div id="sidebar">
+        <div id="sidebar" class="noisy">
             <span>
                 <h4>Coursework</h4>
             
-                <div class="dropdown"><p>1.0 - Introduction to Cybersecurity <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
+                <div class="dropdown noisy"><p>1.0 - Introduction to Cybersecurity <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
                     <span class="dropdown-content">
-                        <p><a href="{{ url_for('impToCyber') }}">1.1 Importance of Cybersecurity in the Workplace</a></p>
-                        <p><a>1.2 Overview of Common Threats</a></p>
-                        <p><a>1.3 Quiz 1: Introduction to Cybersecurity</a></p>
+                        <p><a href="{{ url_for('viewArticle', chapter=1, article=1) }}">1.1 Importance of Cybersecurity in the Workplace</a></p>
+                        <p><a href="{{ url_for('viewArticle', chapter=1, article=2) }}">1.2 Overview of Common Threats</a></p>
+                        <p><a href="{{ url_for('viewArticle', chapter=1, article=3) }}">1.3 Quiz 1: Introduction to Cybersecurity</a></p>
                     </span>
                 </div>
 
-                <div class="dropdown dropdown-alt"><p>2.0 - Types of Cyber Threats <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
+                <div class="dropdown dropdown-alt noisy"><p>2.0 - Types of Cyber Threats <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
                     <span class="dropdown-content">
                         <p><a>2.1 Phishing and Social Engineering</a></p>
                         <p><a>2.2 Malware, Ransomware, and Viruses</a></p>
@@ -52,7 +52,7 @@
                     </span>
                 </div>
 
-                <div class="dropdown"><p>3.0 - Safe Internet Practices <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
+                <div class="dropdown noisy"><p>3.0 - Safe Internet Practices <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
                     <span class="dropdown-content">
                         <p><a>3.1 Recognizing Suspicious Emails and Links</a></p>
                         <p><a>3.2 Secure Browsing Habits</a></p>
@@ -61,7 +61,7 @@
                     </span>
                 </div>
 
-                <div class="dropdown dropdown-alt"><p>4.0 - Device Security <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
+                <div class="dropdown dropdown-alt noisy"><p>4.0 - Device Security <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
                     <span class="dropdown-content">
                         <p><a>4.1 Securing Mobile Devices and Laptops</a></p>
                         <p><a>4.2 Importance of Software Updates</a></p>
@@ -70,7 +70,7 @@
                     </span>
                 </div>
 
-                <div class="dropdown"><p>5.0 - Data Protection <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
+                <div class="dropdown noisy"><p>5.0 - Data Protection <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
                     <span class="dropdown-content">
                         <p><a>5.1 Understanding Data Classification and Handling</a></p>
                         <p><a>5.2 Importance of Encryption</a></p>
@@ -79,7 +79,7 @@
                     </span>
                 </div>
 
-                <div class="dropdown dropdown-alt"><p>6.0 - Incident Reporting <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
+                <div class="dropdown dropdown-alt noisy"><p>6.0 - Incident Reporting <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
                     <span class="dropdown-content">
                         <p><a>6.1 How to Report a Cybersecurity Incident</a></p>
                         <p><a>6.2 Understanding the Escalation Process</a></p>
@@ -88,7 +88,7 @@
                     </span>
                 </div>
 
-                <div class="dropdown"><p>7.0 - Social Media and Cybersecurity <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
+                <div class="dropdown noisy"><p>7.0 - Social Media and Cybersecurity <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
                     <span class="dropdown-content">
                         <p><a>7.1 Risks Associated with Social Media</a></p>
                         <p><a>7.2 Privacy Settings and Personal Information Management</a></p>
@@ -96,7 +96,7 @@
                     </span>
                 </div>
 
-                <div class="dropdown dropdown-alt"><p>8.0 - Compliance and Regulations <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
+                <div class="dropdown dropdown-alt noisy"><p>8.0 - Compliance and Regulations <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
                     <span class="dropdown-content">
                         <p><a>8.1 Overview of Relevant Regulations (e.g., GDPR, HIPAA)</a></p>
                         <p><a>8.2 Organizational Policies and Procedures</a></p>
@@ -104,7 +104,7 @@
                     </span>
                 </div>
 
-                <div class="dropdown "><p>9.0 - Physical Security <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
+                <div class="dropdown noisy"><p>9.0 - Physical Security <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
                     <span class="dropdown-content">
                         <p><a>9.1 Securing the Workplace (e.g., locking devices, visitor protocols)</a></p>
                         <p><a>9.2 Importance of Access Control</a></p>
@@ -112,7 +112,7 @@
                     </span>
                 </div>
 
-                <div class="dropdown dropdown-alt"><p>10.0 - Best Practices for Remote Work <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
+                <div class="dropdown dropdown-alt noisy"><p>10.0 - Best Practices for Remote Work <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
                     <span class="dropdown-content">
                         <p><a>10.1 Secure Remote Access Protocols</a></p>
                         <p><a>10.2 Maintaining Cybersecurity while Working from Home</a></p>
@@ -120,7 +120,7 @@
                     </span>
                 </div>
 
-                <div class="dropdown"><p>11.0 - Cyber Hygiene <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
+                <div class="dropdown noisy"><p>11.0 - Cyber Hygiene <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
                     <span class="dropdown-content">
                         <p><a>11.1 Regular Security Practices and Behaviors</a></p>
                         <p><a>11.2 Importance of Security Awareness and Continuous Learning</a></p>
@@ -128,7 +128,7 @@
                     </span>
                 </div>
 
-                <div class="dropdown dropdown-alt"><p>12.0 - Conclusion and Resources <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
+                <div class="dropdown dropdown-alt noisy"><p>12.0 - Conclusion and Resources <img class="dropIcon" src="{{ url_for('static', filename='assets/ui/arrow.svg') }}" height="12px" width="12px"></p>
                     <span class="dropdown-content">
                         <p><a>12.1 Summary of Key Points</a></p>
                         <p><a>12.2 Resources for further Learning and Support</a></p>
