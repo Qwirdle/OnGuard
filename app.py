@@ -37,7 +37,9 @@ class Users(UserMixin, db.Model):
     cdate = db.Column(db.String(250),
                          default="none")
 
-# init rest of appp
+# Create progress model
+
+# init rest of app
 db.init_app(app)
  
 with app.app_context():
