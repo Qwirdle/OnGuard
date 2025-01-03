@@ -7,12 +7,12 @@ from __main__ import app, Users, db
 
 @app.route('/register/', methods=["GET", "POST"])
 def register():
-    # if POST request, make new user
+    # If POST request, make new user
     if request.method == "POST":
-        # var to detect if something went wrong, so multiple flashes can show up
+        # Variable to detect if something went wrong, so multiple flashes can show up
         tripper = False
 
-        # check if there is username/password
+        # Check if there is username/password
         if len(request.form.get("username")) == 0:
             flash("You need to have a username", 'error')
             tripper = True
@@ -20,22 +20,22 @@ def register():
             flash("You need to have a password", 'error')
             tripper = True
         
-        # check tripper
+        # Check tripper
         if tripper == True:
             return redirect(url_for("register"))
         
-        # check for existing username
+        # Check for existing username
         usernameExists = Users.query.filter_by(username=request.form.get("username")).first()
         if usernameExists:
             flash("Username already exists", 'error')
             return redirect(url_for('register'))
 
 
-        # check password repeat
+        # Check password repeat
         if request.form.get("password") == request.form.get("rpassword"):
             user = Users(username=request.form.get("username"), password=request.form.get("password"), fname=request.form.get("fname"), lname=request.form.get("lname"))
 
-            # implement into db
+            # Implement into db
             db.session.add(user)
             db.session.commit()
 
@@ -46,19 +46,19 @@ def register():
 
     return render_template('/login/register.html')
 
-# MAYBE: implement brute force security
+# MAYBE: Implement brute force security
 @app.route('/login/', methods=["GET", "POST"])
 def login():
-    # check for POST request and do login
+    # Check for POST request and do login
     if request.method == "POST":
-        # no tripper because of structure of flashes
+        # No tripper because of structure of flashes
 
         if len(request.form.get("username")) == 0:
             flash("You need to have a username", 'error')
             return redirect(url_for('login'))
 
-        # check if username exists before password to avoid looking up
-        # non-existant username in db
+        # Check if username exists before password to avoid looking up
+        # Non-existant username in db
         usernameExists = Users.query.filter_by(username=request.form.get("username")).first()
         print(usernameExists)
         if usernameExists == None:
@@ -71,7 +71,7 @@ def login():
 
 
         user = Users.query.filter_by(username=request.form.get("username")).first()
-        # check for / validate password
+        # Check for / validate password
         if user.password == request.form.get("password"):
             login_user(user)
             return redirect(url_for("home"))
