@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block body %}
-<a href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='assets/images/logo.png') }}" height="50px" width="125px" id="back"></a>
+<a href="{{ url_for('index') }}" id="back"><img src="{{ url_for('static', filename='assets/images/logo.png') }}" height="75px" width="187.5px"></a>
 
-<div id="ver-container">
+<div class="ver-container noisy">
         <h2>Register</h2>
         
         <form action="#" method="post">
@@ -92,7 +92,7 @@
             </script>
         </form>
         <br>
-<a href="{{ url_for('login') }}">Already have an account? <strong>Login Here</strong></a>
+<a href="{{ url_for('login') }}"><span class="alternate">Already have an account?</span> <strong class="darker">Login Here</strong></a>
 
     </div>
 </div>
