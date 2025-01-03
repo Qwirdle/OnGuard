@@ -5,6 +5,7 @@
 /* vars */
 :root {
   --ui-main-color: black;
+  --ui-alt-transparent: rgba(78, 78, 78, 0.45);
   --alt1-color: #0a0a0a;
   --alt2-color: #111111;
 }
@@ -24,11 +25,11 @@ body {
 
 }
 
-#ver-container {
+.ver-container {
     width: 500px;
     margin: auto;
     height: 100vh;
-    background-color: var(--ui-main-color);
+    background-color: var(--ui-alt-transparent);
     padding: 0;
     text-align: center;
     display: flex;
@@ -135,8 +136,16 @@ body {
 a {
     text-decoration: none;
     cursor: pointer;
-    color: rgb(158, 158, 255);
+    color: rgba(102, 108, 192, 0.973);
     width: fit-content;
+}
+
+a .alternate {
+    color: white;
+}
+
+a .darker {
+    color: #4969af;
 }
 
 button {
@@ -253,12 +262,12 @@ input {
 
 /* types of errors */
 .error {
-    background-color: #e93232;
+    background-color: #b13b3b;
     color: #ffffff;
 }
 
 #passValContainer {
-    background-color: #e93232;
+    background-color: #b13b3b;
     color: #ffffff;
 
     text-align: left;
@@ -272,8 +281,9 @@ input {
 }
 
 #back {
-    padding-left: 10px;
-    position: fixed;
+    position: absolute;
+    top: 0px;
+    left: 0px;
 }
 
 p, li, a {
