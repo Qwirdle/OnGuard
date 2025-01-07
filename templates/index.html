@@ -6,24 +6,20 @@
 
 {% block body %}
 <div class="ver-container noisy">
-    <img src="{{ url_for('static', filename='assets/images/logo.png') }}" height="100px" width="250px">
+    <img src="{{ url_for('static', filename='assets/images/logo.png') }}" height="125px" width="312.5px">
     
-    <br><br><br><br><br>
+    <br>
 
-    <div>
-        <a href="{{ url_for('login') }}">
-            <button type="button" class="b">
-                Login
-            </button>
-        </a>
+    <a href="{{ url_for('login') }}" class="extend">
+        <button type="button" class="b b-alt">
+            Login
+        </button>
+    </a>
 
-        <span></span>
-        
-        <a href="{{ url_for('register') }}">
-            <button type="button" class="b">
-                Register
-            </button>
-        </a>
-    </div>
+    <a href="{{ url_for('register') }}" class="extend">
+        <button type="button" class="b b-alt">
+            Register
+        </button>
+    </a>
 </div>
 {% endblock %}
