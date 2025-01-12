@@ -31,6 +31,7 @@ def loader_user(user_id):
 # Import all the site routes before starting the app, they are stored in the routes directory
 import src.routes.login
 import src.routes.articles
+from src.routes.articles import testArticleAlignment
 
 """The below code handles all the essential routes"""
     
@@ -63,6 +64,9 @@ def logout():
 @login_manager.unauthorized_handler
 def unauthorized_callback():
     return redirect(url_for('index'))
+
+# Test for any problems with article.py having data inconsistency
+testArticleAlignment()
 
 if __name__ == "__main__":
     app.run()
