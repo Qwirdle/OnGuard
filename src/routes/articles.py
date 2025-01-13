@@ -5,9 +5,6 @@ from flask_wtf import *
 
 from __main__ import app, Users
 
-# For next button, to detect going to the next chapter
-articlesPerChapter = [3, 4, 4, 4, 4, 4, 3, 3, 3, 3, 3, 3]
-
 # Keeps track of article/section names for generation
 titles = {
     "1.0 Introduction to Cybersecurity": [
@@ -76,30 +73,7 @@ titles = {
         "12.3 Final Test: Overall Cybersecurity Awareness"
     ]
 }
-
-# Check if amount of articles in titles and articlesPerChapter is equal
-def testArticleAlignment():
-    clear = True
     
-    # Compare lengths of list and values
-    if len(articlesPerChapter) != len(titles):
-        print(" * IMPORTANT: Article tracking data in 'articles.py' do not have the same amount of articles")
-        # Quit before looping through both lists/dicts to avoid error
-        return
-    
-    # Compare individual 
-    idx = 0
-    for chapter in titles.values():
-        if articlesPerChapter[idx] != len(chapter):
-            print(f" * IMPORTANT: Section {idx + 1} has an inconsistent length of articles in titles/articlesPerChapter in 'articles.py'")
-            clear = False
-        idx += 1
-            
-    if clear:
-        print(" * Article/chapter data in 'articles.py' is consistent")
-    
-
-
 # Generates list with user data to be passed to homepage
 def genProgressData():
     return 
@@ -107,12 +81,21 @@ def genProgressData():
 @app.route('/articles/<int:chapter>/<int:article>')
 @login_required
 def viewArticle(chapter, article):
+    # Convert titles to list for ease of access
+    listTitles = list(titles.values())
+    
+    # Translate into just the length of each chapter
+    idx = 0
+    for x in listTitles:
+        listTitles[idx] = len(x)
+        idx += 1
+    
     # Check if next is going to next chapter, and if so increment
-    if articlesPerChapter[chapter - 1] < article:
+    if listTitles[chapter - 1] < article:
         article = 1
         chapter +=1
     try: # Try in order to handle accessing false articles (especially over URLs)
-        if articlesPerChapter[chapter-1] < article:
+        if listTitles[chapter-1] < article:
             return render_template(f'articles/{chapter}/{article}.html', article=article+1, chapter=1)
         else:
             return render_template(f'articles/{chapter}/{article}.html', article=article, chapter=chapter)
