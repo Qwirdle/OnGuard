@@ -71,6 +71,11 @@ titles = {
         "12.1 Summary of Key Points",
         "12.2 Resources for Further Learning and Support",
         "12.3 Final Test: Overall Cybersecurity Awareness"
+    ],
+    "13.0 Conclusion and Resources": [
+        "12.1 Summary of Key Points",
+        "12.2 Resources for Further Learning and Support",
+        "12.3 Final Test: Overall Cybersecurity Awareness"
     ]
 }
     
@@ -96,8 +101,8 @@ def viewArticle(chapter, article):
         chapter +=1
     try: # Try in order to handle accessing false articles (especially over URLs)
         if listTitles[chapter-1] < article:
-            return render_template(f'articles/{chapter}/{article}.html', article=article+1, chapter=1)
+            return render_template(f'articles/{chapter}/{article}.html', article=article+1, chapter=1, titles = titles, titles_keys = list(titles.keys()))
         else:
-            return render_template(f'articles/{chapter}/{article}.html', article=article, chapter=chapter)
+            return render_template(f'articles/{chapter}/{article}.html', article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()))
     except:
         return render_template('error.html', message="Oops! Article not found."), 404
