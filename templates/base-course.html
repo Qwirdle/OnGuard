@@ -10,6 +10,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='assets/favicons/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='assets/favicons/favicon-16x16.png') }}">
     <link rel="manifest" href="/site.webmanifest">
+    <title>{{ urlTitle }}</title>
     {% block head %}{% endblock %}
 </head>
 <body>
@@ -40,11 +41,11 @@
                 {% set ns = namespace(alt=false) %}
                 {% for section, articles in titles.items() %}
                 <div class="dropdown {{ 'dropdown-alt' if ns.alt}} noisy">
-                    <div class="overlay"><p>{{ section }}</p></div>
+                    <div class="{{ completion_data[titles_keys.index(section)] }} overlay"><p>{{ section }}</p></div>
 
                     <span class="{% if chapter == titles_keys.index(section) + 1 %}dropdown-active{% else %}dropdown-content{% endif %}">
                         {% for article in articles %}
-                        <div class="overlay"><p><a href="{{ url_for('viewArticle', chapter=titles_keys.index(section)+1, article=articles.index(article)+1) }}">{{ article }}</a></p></div>
+                        <div class="{{ progress_data[titles_keys.index(section)][articles.index(article)] }} overlay"><p><a href="{{ url_for('viewArticle', chapter=titles_keys.index(section)+1, article=articles.index(article)+1) }}">{{ article }}</a></p></div>
                         {% endfor %}
                     </span>
                     {% for article in articles %}

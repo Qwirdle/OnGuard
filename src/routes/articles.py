@@ -71,17 +71,55 @@ titles = {
         "12.1 Summary of Key Points",
         "12.2 Resources for Further Learning and Support",
         "12.3 Final Test: Overall Cybersecurity Awareness"
-    ],
-    "13.0 Conclusion and Resources": [
-        "12.1 Summary of Key Points",
-        "12.2 Resources for Further Learning and Support",
-        "12.3 Final Test: Overall Cybersecurity Awareness"
     ]
 }
+
+def genChapterCompletion(user):
+    """Takes in a user class from flask, and returns all their chapter completion progress in a list"""
+    user = user.__dict__
+    out = []
     
-# Generates list with user data to be passed to homepage
-def genProgressData():
-    return 
+    idx = 0
+    for articles in list(titles.values()):
+        temp = []
+        artIdx = 0
+        for article in articles:
+            temp.append(user[f"article_{idx+1}_{artIdx+1}"])
+            artIdx += 1
+
+        if all(entry == 0 for entry in temp):
+            out.append("unstarted")
+            continue
+        elif all(entry == 2 for entry in temp):
+            out.append("complete")
+            continue
+        elif 1 in temp or 2 in temp:
+            out.append("in-progress")
+        
+        idx += 1
+    
+    return out
+
+
+def genProgressData(user):
+    """Takes in a user class from flask, and returns all their course progress in a list"""
+    user = user.__dict__
+    out = []
+
+    idx = 0
+    for chapter in list(titles.keys()):
+        out.append([])
+        artIdx = 0
+        for article in titles[chapter]:
+            if user[f"article_{idx+1}_{artIdx+1}"] == 0:
+                out[idx].append("unstarted")
+            elif user[f"article_{idx+1}_{artIdx+1}"] == 1:
+                out[idx].append("in-progress")
+            else:
+                out[idx].append("complete")
+        idx += 1
+
+    return out
 
 @app.route('/articles/<int:chapter>/<int:article>')
 @login_required
@@ -101,8 +139,8 @@ def viewArticle(chapter, article):
         chapter +=1
     try: # Try in order to handle accessing false articles (especially over URLs)
         if listTitles[chapter-1] < article:
-            return render_template(f'articles/{chapter}/{article}.html', article=article+1, chapter=1, titles = titles, titles_keys = list(titles.keys()))
+            return render_template(f'articles/{chapter}/{article}.html', article=article+1, chapter=1, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()))
         else:
-            return render_template(f'articles/{chapter}/{article}.html', article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()))
+            return render_template(f'articles/{chapter}/{article}.html', article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()))
     except:
         return render_template('error.html', message="Oops! Article not found."), 404
