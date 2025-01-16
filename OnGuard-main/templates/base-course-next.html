@@ -1,0 +1,7 @@
+{% extends 'base-course.html' %}
+
+{% block next %}
+<br>
+<a href="{{ url_for('viewArticle', chapter=chapter, article=article+1) }}"><button class="next noisy">Next</button></a>
+<br>
+{% endblock %}
