@@ -86,6 +86,8 @@ def genChapterCompletion(user):
         for article in articles:
             temp.append(user[f"article_{idx+1}_{artIdx+1}"])
             artIdx += 1
+        idx += 1
+        print(f"{idx}: {temp}")
 
         if all(entry == 0 for entry in temp):
             out.append("unstarted")
@@ -95,8 +97,6 @@ def genChapterCompletion(user):
             continue
         elif 1 in temp or 2 in temp:
             out.append("in-progress")
-        
-        idx += 1
     
     return out
 
@@ -111,12 +111,16 @@ def genProgressData(user):
         out.append([])
         artIdx = 0
         for article in titles[chapter]:
+            print(f"article_{idx+1}_{artIdx+1}: ")
+            print(user[f"article_{idx+1}_{artIdx+1}"])
+            print()
             if user[f"article_{idx+1}_{artIdx+1}"] == 0:
                 out[idx].append("unstarted")
             elif user[f"article_{idx+1}_{artIdx+1}"] == 1:
                 out[idx].append("in-progress")
             else:
                 out[idx].append("complete")
+            artIdx += 1
         idx += 1
 
     return out

@@ -47,10 +47,8 @@
                         {% for article in articles %}
                         <div class="{{ progress_data[titles_keys.index(section)][articles.index(article)] }} overlay"><p><a href="{{ url_for('viewArticle', chapter=titles_keys.index(section)+1, article=articles.index(article)+1) }}">{{ article }}</a></p></div>
                         {% endfor %}
+                        <hr style="height:0px;border-width:0;color:rgba(43, 43, 43, 0);background-color:rgba(43, 43, 43, 0);">
                     </span>
-                    {% for article in articles %}
-                    
-                    {% endfor %}
                 </div>
                 {% set chapter_index = chapter_index + 1 %}
                 {% set ns.alt = not ns.alt %}
