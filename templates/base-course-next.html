@@ -2,6 +2,6 @@
 
 {% block next %}
 <br>
-<a href="{{ url_for('viewArticle', chapter=chapter, article=article+1) }}"><button class="next noisy">Next</button></a>
+<a href="{{ url_for('viewArticle', chapter=chapter, article=article+1, markForComplete=True) }}"><button class="next noisy">Next</button></a>
 <br>
 {% endblock %}

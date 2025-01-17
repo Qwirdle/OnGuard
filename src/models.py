@@ -19,25 +19,25 @@ class Users(UserMixin, db.Model):
     # Article progress columns for all chapters
     #   0 is unstarted, 1 is in progress, and 2 is completed
     # Chapter 1
-    article_1_1 = db.Column(db.Integer, default=2)
-    article_1_2 = db.Column(db.Integer, default=1)
-    article_1_3 = db.Column(db.Integer, default=1)
+    article_1_1 = db.Column(db.Integer, default=0)
+    article_1_2 = db.Column(db.Integer, default=0)
+    article_1_3 = db.Column(db.Integer, default=0)
 
     # Chapter 2
-    article_2_1 = db.Column(db.Integer, default=2)
-    article_2_2 = db.Column(db.Integer, default=2)
-    article_2_3 = db.Column(db.Integer, default=2)
-    article_2_4 = db.Column(db.Integer, default=2)
+    article_2_1 = db.Column(db.Integer, default=0)
+    article_2_2 = db.Column(db.Integer, default=0)
+    article_2_3 = db.Column(db.Integer, default=0)
+    article_2_4 = db.Column(db.Integer, default=0)
 
     # Chapter 3
-    article_3_1 = db.Column(db.Integer, default=1)
-    article_3_2 = db.Column(db.Integer, default=1)
-    article_3_3 = db.Column(db.Integer, default=1)
-    article_3_4 = db.Column(db.Integer, default=1)
+    article_3_1 = db.Column(db.Integer, default=0)
+    article_3_2 = db.Column(db.Integer, default=0)
+    article_3_3 = db.Column(db.Integer, default=0)
+    article_3_4 = db.Column(db.Integer, default=0)
 
     # Chapter 4
     article_4_1 = db.Column(db.Integer, default=0)
-    article_4_2 = db.Column(db.Integer, default=2)
+    article_4_2 = db.Column(db.Integer, default=0)
     article_4_3 = db.Column(db.Integer, default=0)
     article_4_4 = db.Column(db.Integer, default=0)
 

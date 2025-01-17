@@ -3,7 +3,7 @@ from flask_sqlalchemy import *
 from flask_login import *
 from flask_wtf import *
 
-from __main__ import app, Users
+from __main__ import app, Users, db
 
 # Keeps track of article/section names for generation
 titles = {
@@ -87,7 +87,6 @@ def genChapterCompletion(user):
             temp.append(user[f"article_{idx+1}_{artIdx+1}"])
             artIdx += 1
         idx += 1
-        print(f"{idx}: {temp}")
 
         if all(entry == 0 for entry in temp):
             out.append("unstarted")
@@ -111,9 +110,6 @@ def genProgressData(user):
         out.append([])
         artIdx = 0
         for article in titles[chapter]:
-            print(f"article_{idx+1}_{artIdx+1}: ")
-            print(user[f"article_{idx+1}_{artIdx+1}"])
-            print()
             if user[f"article_{idx+1}_{artIdx+1}"] == 0:
                 out[idx].append("unstarted")
             elif user[f"article_{idx+1}_{artIdx+1}"] == 1:
@@ -127,7 +123,18 @@ def genProgressData(user):
 
 @app.route('/articles/<int:chapter>/<int:article>')
 @login_required
-def viewArticle(chapter, article):
+def viewArticle(chapter, article, markForComplete=False):
+
+    def changeProgressEntry(chapter, article, markForComplete=False):
+        # check/modify completion data
+        user = Users.query.filter_by(username=current_user.username).first()
+        if user.__dict__[f"article_{chapter}_{article}"] == 0:
+            exec(f"user.article_{chapter}_{article} = 1") # exec is last resort here, it's better then db dirty, review if put into production
+        if markForComplete == True:
+            exec(f"user.article_{chapter}_{article} = 2") # exec is last resort here, it's better then db dirty, review if put into production
+        
+        db.session.commit()
+
     # Convert titles to list for ease of access
     listTitles = list(titles.values())
     
@@ -143,8 +150,10 @@ def viewArticle(chapter, article):
         chapter +=1
     try: # Try in order to handle accessing false articles (especially over URLs)
         if listTitles[chapter-1] < article:
+            changeProgressEntry(1, article+1, markForComplete)
             return render_template(f'articles/{chapter}/{article}.html', article=article+1, chapter=1, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()))
         else:
+            changeProgressEntry(chapter, article, markForComplete)
             return render_template(f'articles/{chapter}/{article}.html', article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()))
     except:
         return render_template('error.html', message="Oops! Article not found."), 404

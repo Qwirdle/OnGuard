@@ -44,8 +44,6 @@ def index():
 @login_required
 def home():
     user = Users.query.filter_by(username=current_user.username).first() # Grab the users data by querying for their username
-
-    print(genChapterCompletion(Users.query.filter_by(username=current_user.username).first()))
     
     return render_template('home.html', titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()))
 
