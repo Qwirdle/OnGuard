@@ -121,17 +121,26 @@ def genProgressData(user):
 
     return out
 
+# used for the next button, in order to mark parts of the course as complete
+@app.route('/mfc/<int:chapter>/<int:article>')
+@login_required
+def markForComplete(chapter, article):
+    user = Users.query.filter_by(username=current_user.username).first()
+    exec(f"user.article_{chapter}_{article} = 2")
+    db.session.commit()
+
+    return redirect(url_for('viewArticle', chapter=chapter, article=article+1))
+
+
 @app.route('/articles/<int:chapter>/<int:article>')
 @login_required
-def viewArticle(chapter, article, markForComplete=False):
+def viewArticle(chapter, article):
 
-    def changeProgressEntry(chapter, article, markForComplete=False):
+    def changeProgressEntry(chapter, article):
         # check/modify completion data
         user = Users.query.filter_by(username=current_user.username).first()
         if user.__dict__[f"article_{chapter}_{article}"] == 0:
             exec(f"user.article_{chapter}_{article} = 1") # exec is last resort here, it's better then db dirty, review if put into production
-        if markForComplete == True:
-            exec(f"user.article_{chapter}_{article} = 2") # exec is last resort here, it's better then db dirty, review if put into production
         
         db.session.commit()
 
@@ -150,10 +159,10 @@ def viewArticle(chapter, article, markForComplete=False):
         chapter +=1
     try: # Try in order to handle accessing false articles (especially over URLs)
         if listTitles[chapter-1] < article:
-            changeProgressEntry(1, article+1, markForComplete)
-            return render_template(f'articles/{chapter}/{article}.html', article=article+1, chapter=1, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()))
+            changeProgressEntry(1, article+1)
+            return render_template(f'articles/{chapter}/{article}.html', article=article+1, chapter=1, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1])
         else:
-            changeProgressEntry(chapter, article, markForComplete)
-            return render_template(f'articles/{chapter}/{article}.html', article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()))
+            changeProgressEntry(chapter, article)
+            return render_template(f'articles/{chapter}/{article}.html', article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1])
     except:
         return render_template('error.html', message="Oops! Article not found."), 404

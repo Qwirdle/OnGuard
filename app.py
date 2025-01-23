@@ -1,5 +1,4 @@
-# CHECK THIS OUT FOR A CUSTOM ARTICLE ROUTING FUNCTION https://www.geeksforgeeks.org/flask-app-routing/
-# IMPLEMENT WEBMANIFEST AND .ENV
+# If you can't understand this codebase, it's your own fault <3 - Jasper
 
 from flask import *
 from flask_login import *

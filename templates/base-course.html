@@ -10,7 +10,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='assets/favicons/favicon-32x32.png') }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='assets/favicons/favicon-16x16.png') }}">
     <link rel="manifest" href="/site.webmanifest">
-    <title>{{ urlTitle }}</title>
+    <title>OnGuard - {{ title }}</title>
     {% block head %}{% endblock %}
 </head>
 <body>
@@ -25,7 +25,7 @@
           </span>
         {% endif %}
     {%  endwith %}
-    <div id="header" class='noisy'>
+    <div id="header" class='noisy'> <!-- You might be asking, Jasper, why is the header visually a part of the sidebar but not implemented that way? Don't ask that, because I don't have an answer. -->
         <img src="{{ url_for('static', filename='assets/images/logo.png') }}" height="65px" width="162.5px">
         <div id="account">
             {{ current_user.username }}
