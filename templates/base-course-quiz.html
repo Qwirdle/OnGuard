@@ -66,9 +66,15 @@
     </div>
 
     <div id="courseTextContainer">
-        <h2>{{ title }}</h2>
-        {% block content %}{% endblock %}
-        {% block next %}{% endblock %}
+        <div class="centerText">
+            <h2>{{ title }}</h2>
+            <div class="blurb"><p>Fill out each of the following questions using what you've previously learned. You need a minimum score of 80% in order to pass.</p></div><br>
+            
+            <form action="/action_page.php">
+                {% block content %}{% endblock %}
+                <button type="submit" value="Submit" class="b b-alt quiz">Submit</button></div>
+              </form>
+        </div>
     </div>
 </body>
 {% endautoescape %}

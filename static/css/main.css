@@ -8,6 +8,7 @@
   --ui-alt-transparent: linear-gradient(0deg, rgba(2,0,36,0) 0%, rgba(5,55,31,0) 22%, rgba(203,203,203,1) 100%);
   --alt1-color: #0a0a0a;
   --alt2-color: #111111;
+  --quiz-alt: rgb(231, 231, 231);
 }
 
 
@@ -61,9 +62,23 @@ body {
 
 .radioAlign {
     text-align: left;
-    /* display: flex; */
-    /* flex-direction: column; */
-    /* align-items: left; */
+    background-color: var(--quiz-alt);
+    padding: 10px;
+    padding-top: 1px;
+    padding-bottom: 8px;
+    padding-right: 25px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+.radioAlign p {
+    margin-top: 10px;
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+}
+
+.quiz {
+    background-color: var(--quiz-alt);
 }
 
 #navbar {
@@ -279,6 +294,23 @@ input {
     border: 0;
 
     box-sizing: border-box;
+}
+
+input[type="radio" i] {
+    width: auto;
+}
+
+.radioButton {
+    margin-left: 15px;
+    margin-right: 5px;
+}
+
+.blurb {
+    width: 500px;
+}
+
+h2 {
+    margin-bottom: 5px;
 }
 
 /* flashing */
