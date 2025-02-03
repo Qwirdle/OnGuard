@@ -369,15 +369,36 @@ h4 {
     #sidebar {
         width: 340px;
         /* Set the width of the sidebar */
-        top: 65px;
+        top: 30px;
+        height: calc(100vh - 30px);
+    }
+
+    #sidebar a {
+        font-size: .6rem;
+    }
+
+    #sidebar h4 {
+        font-size: .8rem;
     }
 
     #header {
         width: 340px;
+        font-size: .8rem;
     }
 
     #courseTextContainer {
         margin-left: 340px;
+    }
+
+    #account-icon {
+        width: 20px;
+        height: 20px;
+    }
+
+    #hLogo {
+        height: 43.33333px;
+        width: 108.333333px;
+        margin-left: 2px;
     }
 
 
@@ -386,14 +407,20 @@ h4 {
         margin-left: 2px;
     }
 
+    .navbar-icon {
+        height: 18px;
+        width: 18px;
+        margin-left: 6px;
+    }
+
     .dropdown p {
         margin: 0px;
-        padding: 3px;
-        font-size: .91rem;
+        padding: 0;
+        font-size: .7rem;
     }
 
     .dropdown a {
-        font-size: .86rem;
+        font-size: .7rem;
     }
 
     .dropdown-content {
@@ -402,7 +429,19 @@ h4 {
     }
 
     p, li, a {
-        font-size: 1rem;
+        font-size: .8rem;
+    }
+
+    h2 {
+        font-size: 1.2rem;
+    }
+
+    .next {
+        padding: 7px;
+    }
+
+    .source {
+        font-size: .8rem;
     }
 }
 

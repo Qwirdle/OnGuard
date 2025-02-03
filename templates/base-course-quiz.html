@@ -26,7 +26,7 @@
         {% endif %}
     {%  endwith %}
     <div id="header" class='noisy'> <!-- You might be asking, Jasper, why is the header visually a part of the sidebar but not implemented that way? Don't ask that, because I don't have an answer. -->
-        <img src="{{ url_for('static', filename='assets/images/logo.png') }}" height="65px" width="162.5px">
+        <img src="{{ url_for('static', filename='assets/images/logo.png') }}" id="hLogo" height="65px" width="162.5px">
         <div id="account">
             {{ current_user.username }}
             <img src="{{ url_for('static', filename='assets/images/account.svg') }}" height="30px" width="30px" id="account-icon">
