@@ -1,5 +1,7 @@
 # If you can't understand this codebase, it's your own fault <3 - Jasper
 
+# maybe, transfer all summary stuff into summary category, not necessary though
+
 from flask import *
 from flask_login import *
 from flask_wtf import *
