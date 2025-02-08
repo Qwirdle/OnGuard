@@ -1,0 +1,38 @@
+{% extends 'base-course-next.html' %}
+
+{% block content %}
+<p> 
+	Encryption is a way to protect information via scrambling it into a certain code by using a certain algorithm, typically containing a <b>public key</b> and <b>decrypting</b> 
+    it via a <b>private key.</b>
+
+
+</p>
+
+<p>Encryption has been used by even war generals in Roman times. A form of <b>symmetric encryption</b> (meaning private and public keys are the same) back then was a “Caesar Cipher”. 
+    To encrypt something using it, one would take a string of letters and words and shift every letter by a certain amount. If the key is 1 right, to decrypt it you would shift 
+    every letter 1 left
+</p>
+
+<p>Even though updates may create unwanted downtime where you'd rather be working, especially with longer updates, <b>the consequences of not updating one's system
+     regularly are too dire to be ignored</b>. Although in the moment updating might seem like a small deal, <b>the updates are being pushed out for a reason</b>, especially
+      with security updates which are regularly pushed out to deal with very real risks. </p>
+<img src="https://media.geeksforgeeks.org/wp-content/uploads/ceaserCipher.png" width="30%">
+<p class="source">https://www.geeksforgeeks.org</p>
+
+<p>Unfortunately for hackers, black-hat or otherwise, modern ciphers are not as easy to brute force as this. Many are <b>asymmetrical</b> now, meaning they have a 
+    separate public and private key, leading to more applications like <b>digital signatures</b> which allow people to authenticate themselves by encrypting a message with a 
+    private key and giving others a public key which can only decrypt things from their private key.</p>
+
+<p>An example of asymmetrical encryption is a <b>Hash Function</b>, which takes an input of a variable length and turns it into a <i>fixed length string</i>. SHA-256 is an 
+    example of this, turning a given input into a <b>256-bit long string</b></p>
+<p><b>People with a private key will become bigger targets for social engineering. </b>It is important to make sure they are trained to deal with such problems. 
+    Background checks are also important to not give them to untrustworthy bad actors</p>
+<h2>Summary</h2>
+<ul>
+    <li><p>Encryption makes data safe</p></li>
+    <li><p>Encryption can authenticate identities</p></li>
+    <li><p>Old Ciphers (especially if they just switch letters around) are obsolete with modern computers' ability to brute force.</p></li>
+    <li><p>You must trust people heavily before giving them a private key</p></li>
+
+</ul>
+{% endblock %}
