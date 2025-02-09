@@ -63,18 +63,28 @@ body {
 .radioAlign {
     text-align: left;
     background-color: var(--quiz-alt);
-    padding: 10px;
-    padding-top: 1px;
+    padding: 2px;
+    padding-top: .5px;
     padding-bottom: 8px;
-    padding-right: 25px;
+    padding-right: 15px;
     border-radius: 5px;
     margin-bottom: 20px;
+    font-size: .99rem;
+}
+
+h1 {
+    margin-bottom: 0;
+    font-size: 1.5rem;
+}
+
+h2 {
+    margin-top: 5px;
 }
 
 .radioAlign p {
     margin-top: 10px;
     margin-bottom: 5px;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
 .quiz {
@@ -199,7 +209,7 @@ button {
     margin-bottom: 15px;
     padding: 4px;
     border-radius: 25px;
-    
+    min-width: 300px;
 }
 
 .extend {
@@ -307,6 +317,10 @@ input[type="radio" i] {
 
 .blurb {
     width: 500px;
+}
+
+.blurb p {
+    font-size: 1rem;
 }
 
 h2 {

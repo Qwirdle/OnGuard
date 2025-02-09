@@ -66,16 +66,8 @@
     </div>
 
     <div id="courseTextContainer">
-        <div class="centerText">
-            <h2>{{ title }}</h2>
-            <div class="blurb"><p>Fill out each of the following questions using what you've previously learned. You need a minimum score of 80% in order to pass.</p></div>
-            
-            <form action="#" method="post">
-                <input type="hidden" name="csrf_token" value = "{{ csrf_token() }}" /> 
-                {% block content %}{% endblock %}
-                <button type="submit" value="Submit" class="b b-alt quiz">Submit</button></div>
-              </form>
-        </div>
+        {% block content %}{% endblock %}
+        {% block next %}{% endblock %}
     </div>
 </body>
 {% endautoescape %}
