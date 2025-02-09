@@ -72,6 +72,15 @@ body {
     font-size: .99rem;
 }
 
+h1 {
+    margin-bottom: 0;
+    font-size: 1.5rem;
+}
+
+h2 {
+    margin-top: 5px;
+}
+
 .radioAlign p {
     margin-top: 10px;
     margin-bottom: 5px;
@@ -200,7 +209,7 @@ button {
     margin-bottom: 15px;
     padding: 4px;
     border-radius: 25px;
-    
+    min-width: 300px;
 }
 
 .extend {

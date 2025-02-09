@@ -74,13 +74,20 @@ titles = {
     ]
 }
 
+# Holds all the quiz answer keys
+answers = [
+    ("b", "b", "c", "c", "c"),
+    ("b", "b", "c", "b", "c"),
+    ("d", "c", "b", "a", "c")
+]
+
 def checkAnswers(userForm, answerKey):
     """Takes in a multiple choice web form, checks each answer, and returns a percentage of accuracy"""
     
     correct = 0
 
     for _, answer in enumerate(answerKey):
-        if userForm.get(f"question{_ + 1}") == answer:
+        if userForm.get(f"question_{_+1}") == answer:
             correct += 1
 
     return (correct/len(answerKey))*100
@@ -143,9 +150,22 @@ def markForComplete(chapter, article):
     return redirect(url_for('viewArticle', chapter=chapter, article=article+1))
 
 
-@app.route('/articles/<int:chapter>/<int:article>')
+@app.route('/articles/<int:chapter>/<int:article>', methods=["GET", "POST"])
 @login_required
 def viewArticle(chapter, article):
+    
+    if request.method == "POST":
+        # If recieving form request, deal with it accordingly
+        score = checkAnswers(request.form, answers[chapter-1])
+        
+        if score >= 80:
+            user = Users.query.filter_by(username=current_user.username).first()
+            exec(f"user.article_{chapter}_{article} = 2") # mark for completition only if completed
+            db.session.commit()
+
+            return render_template('passed.html', score=round(score, 2), test="Information", article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1])
+        else:
+            return render_template('failed.html', score=round(score, 2), test="Information", article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1])
 
     def changeProgressEntry(chapter, article):
         # check/modify completion data
@@ -176,4 +196,4 @@ def viewArticle(chapter, article):
             changeProgressEntry(chapter, article)
             return render_template(f'articles/{chapter}/{article}.html', article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1])
     except:
-        return render_template('error.html', message="Oops! Article not found."), 404
+        return render_template('error.html', message="Oops! Article not found.", article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1]), 404
