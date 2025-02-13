@@ -66,7 +66,8 @@
     </div>
 
     <div id="courseTextContainer">
-        <div class="centerText">
+        <div id="center-inner" class="background">
+        <div class="centerText barText fill-height">
             <h2>{{ title }}</h2>
             <div class="blurb"><p>Fill out each of the following questions using what you've previously learned. You need a minimum score of 80% in order to pass.</p></div>
             
@@ -75,7 +76,7 @@
                 {% block content %}{% endblock %}
                 <button type="submit" value="Submit" class="b b-alt quiz">Submit</button></div>
               </form>
-        </div>
+        </div></div>
     </div>
 </body>
 {% endautoescape %}

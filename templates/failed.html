@@ -6,10 +6,11 @@
 {% endblock %}
 
 {% block content %}
-<div class="centerText">
+<div id="center-inner" class="background">
+<div class="centerText barText left-align fill-height">
     <h1>You Failed</h1>
     <h2>You got a score of {{ score }}%</h2><br>
 
     <a href="{{ url_for('viewArticle', chapter=chapter, article=article) }}"><button type="submit" class="b">Retake</button></a><br>
-</div>
+</div></div>
 {% endblock %}

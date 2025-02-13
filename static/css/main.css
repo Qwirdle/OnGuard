@@ -57,8 +57,28 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: auto;
 }
 
+.fill-height {
+    min-height: 100vh;
+    height: fit-content;
+}
+
+.background {
+    background-image: url('../assets/images/background.png');
+}
+
+.left-align {
+    text-align: left;
+}
+
+.barText {
+    width: 750px;
+    background-color: white;
+    padding-left: 25px;
+    padding-right: 25px;
+}
 
 .radioAlign {
     text-align: left;
@@ -69,7 +89,7 @@ body {
     padding-right: 15px;
     border-radius: 5px;
     margin-bottom: 20px;
-    font-size: .99rem;
+    font-size: 1.1rem;
 }
 
 h1 {
@@ -84,7 +104,6 @@ h2 {
 .radioAlign p {
     margin-top: 10px;
     margin-bottom: 5px;
-    font-size: 1rem;
 }
 
 .quiz {
@@ -94,10 +113,13 @@ h2 {
 #navbar {
     margin-bottom: 15px;
     padding-left: 15px;
+    padding-right: 25px;
 }
 
 .navbar-icon {
     padding: 2px;
+    height: 22px;
+    width: 22px;
     transition: margin 0.2s ease-out;
 }
 
@@ -319,10 +341,6 @@ input[type="radio" i] {
     width: 500px;
 }
 
-.blurb p {
-    font-size: 1rem;
-}
-
 h2 {
     margin-bottom: 5px;
 }
@@ -477,5 +495,4 @@ h4 {
 
 li p {
     margin: 2px;
-    font-size: .9rem;
 }

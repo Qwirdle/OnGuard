@@ -59,14 +59,15 @@
                 <a href="{{ url_for('home') }}">
                     <img src="{{ url_for('static', filename='assets/ui/home.svg') }}"class="navbar-icon">
                 </a>
-                <a href="{{ url_for('progress') }}">
-                    <img src="{{ url_for('static', filename='assets/ui/progress.svg') }}"class="navbar-icon">
+
+                <a href="{{ url_for('logout') }}">
+                    <img src="{{ url_for('static', filename='assets/ui/logout.svg') }}"class="navbar-icon">
                 </a>
             </div>
     </div>
 
     <div id="courseTextContainer">
-        <h2>{{ title }}</h2>
+        {% if title|length > 0 %}<h2>{{ title }}</h2>{% endif %}
         {% block content %}{% endblock %}
         {% block next %}{% endblock %}
     </div>
