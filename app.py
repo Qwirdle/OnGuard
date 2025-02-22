@@ -32,7 +32,7 @@ def loader_user(user_id):
 # Import all the site routes before starting the app, they are stored in the routes directory
 import src.routes.login
 import src.routes.articles
-from src.routes.articles import titles, genProgressData, genChapterCompletion
+from src.routes.articles import titles, genProgressData, genChapterCompletion, excludeList
 
 """The below code handles all the essential routes"""
     
@@ -46,14 +46,14 @@ def index():
 def home():
     user = Users.query.filter_by(username=current_user.username).first() # Grab the users data by querying for their username
     
-    return render_template('home.html', titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()))
+    return render_template('home.html', titles = titles, title = "Home", titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), excludeTitle = False)
 
 @app.route('/progress/')
 @login_required
 def progress():
     user = Users.query.filter_by(username=current_user.username).first()
     
-    return render_template('progress.html', titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()))
+    return render_template('progress.html', titles = titles, title = "Progress", titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), excludeTitle = False)
 
 # logout
 @app.route('/logout/')

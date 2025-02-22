@@ -70,6 +70,7 @@ label {
     display: flex;
     justify-content: left;
     align-items: center;
+    flex-wrap: nowrap
 }
 
 .background {
@@ -85,6 +86,7 @@ label {
     background-color: white;
     padding-left: 25px;
     padding-right: 25px;
+    min-height: 100vh;
 }
 
 .radioAlign {
@@ -226,7 +228,7 @@ button {
     border-radius: 9px;
     border: 0;
     font-size: 20px;
-    background: #f3f3f3;
+    background: var(--quiz-alt);
     padding: 10px 20px 10px 20px;
     text-decoration: none;
     transition: 0.3s;

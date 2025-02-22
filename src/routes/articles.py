@@ -63,22 +63,32 @@ titles = {
         "10.3 Quiz 10: Best Practices for Remote Work"
     ],
     "11.0 Cyber Hygiene": [
-        "11.1 Regular Security Practices and Behaviors",
-        "11.2 Importance of Security Awareness and Continuous Learning",
-        "11.3 Quiz 11: Cyber Hygiene"
+        "11.1 Importance of Security Awareness and Continuous Learning",
+        "11.2 Quiz 11: Cyber Hygiene"
     ],
     "12.0 Conclusion and Resources": [
         "12.1 Summary of Key Points",
-        "12.2 Resources for Further Learning and Support",
-        "12.3 Final Test: Overall Cybersecurity Awareness"
+        "12.2 Final Test: Overall Cybersecurity Awareness"
     ]
 }
+
+# to exclude showing titles on the actual page
+excludeList = ["12.1 Summary of Key Points"]
 
 # Holds all the quiz answer keys
 answers = [
     ("b", "b", "c", "c", "c"),
     ("b", "b", "c", "b", "c"),
-    ("d", "c", "b", "a", "c")
+    ("d", "c", "b", "a", "c"),
+    ("c", "b", "b", "c", "c"),
+    ("c", "d", "b", "a", "d"),
+    ("a", "a", "d", "a", "b"),
+    ("d", "c", "d", "a", "b"),
+    ("c", "d", "b", "a", "a"),
+    (),
+    (),
+    ("a", "b", "c", "a", "c"),
+    ()
 ]
 
 def checkAnswers(userForm, answerKey):
@@ -191,9 +201,9 @@ def viewArticle(chapter, article):
     try: # Try in order to handle accessing false articles (especially over URLs)
         if listTitles[chapter-1] < article:
             changeProgressEntry(1, article+1)
-            return render_template(f'articles/{chapter}/{article}.html', article=article+1, chapter=1, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1])
+            return render_template(f'articles/{chapter}/{article}.html', article=article+1, chapter=1, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1], excludeTitle = (False if titles[list(titles.keys())[chapter-1]][article-1] in excludeList else True))
         else:
             changeProgressEntry(chapter, article)
-            return render_template(f'articles/{chapter}/{article}.html', article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1])
+            return render_template(f'articles/{chapter}/{article}.html', article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1], excludeTitle = (False if titles[list(titles.keys())[chapter-1]][article-1] in excludeList else True))
     except:
         return render_template('error.html', message="Oops! Article not found.", article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first())), 404

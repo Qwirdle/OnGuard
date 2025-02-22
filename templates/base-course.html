@@ -67,7 +67,7 @@
     </div>
 
     <div id="courseTextContainer">
-        {% if title|length > 0 %}<h2>{{ title }}</h2>{% endif %}
+        {% if excludeTitle == true %}<h2>{{ title }}</h2>{% endif %}
         {% block content %}{% endblock %}
         {% block next %}{% endblock %}
     </div>

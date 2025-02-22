@@ -1,0 +1,31 @@
+{% extends 'base-course-quiz.html' %}
+
+{% block content %}
+<div class="radioAlign"><p>1. What does CIA Stand for in Data Management?</p>
+<label><input type="radio" class="radioButton" name="question_1" value="a">Constitutional Integrity</label>
+<label><input type="radio" class="radioButton" name="question_1" value="b">Create, Integrate, Analyze</label>
+<label><input type="radio" class="radioButton" name="question_1" value="c">Confidentiality, Integrity, Availability</label>
+<label><input type="radio" class="radioButton" name="question_1" value="d">Central Intelligence Agency</label></div>
+
+<div class="radioAlign"><p>2. Which of these is not true?</p>
+<label><input type="radio" class="radioButton" name="question_2" value="a">Most old ciphers are insecure and susceptible to code-breaking</label>
+<label><input type="radio" class="radioButton" name="question_2" value="b">An asymmetric cipher has two keys</label>
+<label><input type="radio" class="radioButton" name="question_2" value="c">Encryption meant to authenticate is called a Digital Signature</label>
+<label><input type="radio" class="radioButton" name="question_2" value="d">Brute force is a type of encryption</label></div>
+
+<div class="radioAlign"><p>3. Which of these document types are the most confidential?</p>
+<label><input type="radio" class="radioButton" name="question_3" value="a">Restricted</label>
+<label><input type="radio" class="radioButton" name="question_3" value="b">Type I</label>
+<label><input type="radio" class="radioButton" name="question_3" value="c">Type II</label>
+<label><input type="radio" class="radioButton" name="question_3" value="d">Type III</label></div>
+
+<div class="radioAlign"><p>4. True or False? Releasing a confidential document without legal reason may be “Breach of Contract”</p>
+<label><input type="radio" class="radioButton" name="question_4" value="a">True</label>
+<label><input type="radio" class="radioButton" name="question_4" value="b">False</label></div>
+
+<div class="radioAlign"><p>5. How long are SHA-256 Hashes</p>
+<label><input type="radio" class="radioButton" name="question_5" value="a">256 Characters</label>
+<label><input type="radio" class="radioButton" name="question_5" value="b">256 Integers</label>
+<label><input type="radio" class="radioButton" name="question_5" value="c">256 kilobits</label>
+<label><input type="radio" class="radioButton" name="question_5" value="d">256 bits</label></div>
+{% endblock %}
