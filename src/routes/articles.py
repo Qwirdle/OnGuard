@@ -58,7 +58,7 @@ titles = {
         "9.3 Quiz 9: Physical Security"
     ],
     "10.0 Best Practices for Remote Work": [
-        "10.1 Secure Remote Access Protocols",
+        "10.1 Using the Cloud",
         "10.2 Maintaining Cybersecurity While Working from Home",
         "10.3 Quiz 10: Best Practices for Remote Work"
     ],
@@ -86,7 +86,7 @@ answers = [
     ("d", "c", "d", "a", "b"),
     ("c", "d", "b", "a", "a"),
     (),
-    (),
+    ("b", "c", "b", "b", "c"),
     ("a", "b", "c", "a", "c"),
     ()
 ]

@@ -1,0 +1,33 @@
+{% extends 'base-course-quiz.html' %}
+
+{% block content %}
+<div class="radioAlign"><p>1. What is one of the biggest cybersecurity risks when using cloud technology?</p>
+<label><input type="radio" class="radioButton" name="question_1" value="a">Slow internet speeds</label>
+<label><input type="radio" class="radioButton" name="question_1" value="b">Phishing attempts disguised as file-sharing requests</label>
+<label><input type="radio" class="radioButton" name="question_1" value="c">Lack of storage space</label>
+<label><input type="radio" class="radioButton" name="question_1" value="d">Difficulty accessing files remotely</label></div>
+
+<div class="radioAlign"><p>2. How should you treat files downloaded from the cloud?</p>
+<label><input type="radio" class="radioButton" name="question_2" value="a">Trust them completely since they come from a secure source</label>
+<label><input type="radio" class="radioButton" name="question_2" value="b">Scan them for viruses only if they look suspicious</label>
+<label><input type="radio" class="radioButton" name="question_2" value="c">Treat them with the same caution as files downloaded from the internet</label>
+<label><input type="radio" class="radioButton" name="question_2" value="d">Download them only on personal devices to reduce risk</label></div>
+
+<div class="radioAlign"><p>3. Which of the following is a common mistake when working from home?</p>
+<label><input type="radio" class="radioButton" name="question_3" value="a">Using a strong, unique password for each account</label>
+<label><input type="radio" class="radioButton" name="question_3" value="b">Physically writing down passwords</label>
+<label><input type="radio" class="radioButton" name="question_3" value="c">Updating software regularly</label>
+<label><input type="radio" class="radioButton" name="question_3" value="d">Using a company-approved VPN</label></div>
+
+<div class="radioAlign"><p>4. Why should personal devices used for work be secured?</p>
+<label><input type="radio" class="radioButton" name="question_4" value="a">They are at a lower risk of cyberattacks than office devices</label>
+<label><input type="radio" class="radioButton" name="question_4" value="b">They can be an entry point for cybercriminals targeting company data</label>
+<label><input type="radio" class="radioButton" name="question_4" value="c">Personal devices do not store sensitive work information</label>
+<label><input type="radio" class="radioButton" name="question_4" value="d">Companies do not care about security on personal devices</label></div>
+
+<div class="radioAlign"><p>5. What should you do if you suspect a cyberattack on your personal device used for work?</p>
+<label><input type="radio" class="radioButton" name="question_5" value="a">Ignore it unless you see direct consequences</label>
+<label><input type="radio" class="radioButton" name="question_5" value="b">Try to fix it yourself without informing IT</label>
+<label><input type="radio" class="radioButton" name="question_5" value="c">Immediately report it to your company’s IT department</label>
+<label><input type="radio" class="radioButton" name="question_5" value="d">Delete all your files to prevent further damage</label></div>
+{% endblock %}
