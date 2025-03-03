@@ -102,6 +102,24 @@ def checkAnswers(userForm, answerKey):
 
     return (correct/len(answerKey))*100
 
+def courseCompleted(user):
+    """Checks each part of the course, and if they are all complete return True"""
+    user = user.__dict__
+
+    for chapter in list(titles.keys()):
+        for article in titles[chapter]:
+            if user[f"article_{list(titles.keys()).index(chapter)+1}_{titles[chapter].index(article)+1}"] != 2:
+                return False
+    return True
+
+def autoComplete(user):
+    """For debug purposes, marks all elements of the course as complete"""
+    for chapter in list(titles.keys()):
+        for article in titles[chapter]:
+            exec(f"user.article_{list(titles.keys()).index(chapter)+1}_{titles[chapter].index(article)+1} = 2")
+    
+    db.session.commit()
+
 def genChapterCompletion(user):
     """Takes in a user class from flask, and returns all their chapter completion progress in a list"""
     user = user.__dict__
@@ -163,8 +181,11 @@ def markForComplete(chapter, article):
 @app.route('/articles/<int:chapter>/<int:article>', methods=["GET", "POST"])
 @login_required
 def viewArticle(chapter, article):
+    user = Users.query.filter_by(username=current_user.username).first()
     
     if request.method == "POST":
+        user = Users.query.filter_by(username=current_user.username).first()
+
         # If recieving form request, deal with it accordingly
         score = checkAnswers(request.form, answers[chapter-1])
         
@@ -173,9 +194,12 @@ def viewArticle(chapter, article):
             exec(f"user.article_{chapter}_{article} = 2") # mark for completition only if completed
             db.session.commit()
 
-            return render_template('passed.html', score=round(score, 2), test="Information", article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1])
+            if chapter == 12 and article == 2:
+                return render_template('passed.html', score=round(score, 2), test="Information", article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1], courseComplete = courseCompleted(user), finalComplete = True)
+            else:
+                return render_template('passed.html', score=round(score, 2), test="Information", article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1], courseComplete = courseCompleted(user))
         else:
-            return render_template('failed.html', score=round(score, 2), test="Information", article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1])
+            return render_template('failed.html', score=round(score, 2), test="Information", article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1], courseComplete = courseCompleted(user))
 
     def changeProgressEntry(chapter, article):
         # check/modify completion data
@@ -201,9 +225,9 @@ def viewArticle(chapter, article):
     try: # Try in order to handle accessing false articles (especially over URLs)
         if listTitles[chapter-1] < article:
             changeProgressEntry(1, article+1)
-            return render_template(f'articles/{chapter}/{article}.html', article=article+1, chapter=1, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1], excludeTitle = (False if titles[list(titles.keys())[chapter-1]][article-1] in excludeList else True))
+            return render_template(f'articles/{chapter}/{article}.html', article=article+1, chapter=1, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1], excludeTitle = (False if titles[list(titles.keys())[chapter-1]][article-1] in excludeList else True), courseComplete = courseCompleted(user))
         else:
             changeProgressEntry(chapter, article)
-            return render_template(f'articles/{chapter}/{article}.html', article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1], excludeTitle = (False if titles[list(titles.keys())[chapter-1]][article-1] in excludeList else True))
+            return render_template(f'articles/{chapter}/{article}.html', article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), title=titles[list(titles.keys())[chapter-1]][article-1], excludeTitle = (False if titles[list(titles.keys())[chapter-1]][article-1] in excludeList else True), courseComplete = courseCompleted(user))
     except:
-        return render_template('error.html', message="Oops! Article not found.", article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first())), 404
+        return render_template('error.html', message="Oops! Article not found.", article=article, chapter=chapter, titles = titles, titles_keys = list(titles.keys()), progress_data = genProgressData(Users.query.filter_by(username=current_user.username).first()), completion_data = genChapterCompletion(Users.query.filter_by(username=current_user.username).first()), courseComplete = courseCompleted(user)), 404

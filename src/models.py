@@ -16,6 +16,9 @@ class Users(UserMixin, db.Model):
 
     cdate = db.Column(db.String(250), default="none")
 
+    cdate = db.Column(db.String(250),
+                         default="none") # completion date
+
     # Article progress columns for all chapters
     #   0 is unstarted, 1 is in progress, and 2 is completed
     # Chapter 1

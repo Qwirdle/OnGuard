@@ -7,11 +7,21 @@
 
 {% block content %}
 <div id="center-inner" class="background">
-<div class="centerText barText left-align fill-height">
-    <h1>You Passed</h1>
-    <h2>You got a score of {{ score }}%</h2><br>
+<div class="centerText barText fill-height">
+    {% if finalComplete %}
+      <h1>You passed the final!</h1>
+      <h2>You got a score of {{ score }}%</h2>
 
-    <a href="{{ url_for('viewArticle', chapter=chapter, article=article+1) }}"><button type="submit" class="b">Continue</button></a><br>
+      <p>Below is a printable certification to mark your completion of this course:</p>
+      <a href="{{ url_for('certification') }}"><button type="submit" class="b">Download Certification</button></a>
+      <p>In the future, you can redownload the certification using the designated button in your sidebar. You have accomplished and learned much through the time that you've spent on the course, and this certification is signifier of said knowledge.</p>
+      <h3>Now you are ready to protect yourself from cyber threats!</h3>
+      <a href="{{ url_for('home') }}"><button type="submit" class="b b-alt">Return Home</button></a>
+    {% else %}
+      <h1>You passed!</h1>
+      <h2>You got a score of {{ score }}%</h2><br>
+      <a href="{{ url_for('viewArticle', chapter=chapter, article=article+1) }}"><button type="submit" class="b">Continue</button></a><br>
+    {% endif %}
 
     <script src="https://cdn.jsdelivr.net/npm/@tsparticles/confetti@3.0.3/tsparticles.confetti.bundle.min.js"></script> <!-- for confetti-->
     <script> <!-- stolen from: confetti.js.org/more.html -->

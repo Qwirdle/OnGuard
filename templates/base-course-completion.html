@@ -53,14 +53,19 @@
                 {% set chapter_index = chapter_index + 1 %}
                 {% set ns.alt = not ns.alt %}
                 {% endfor %}
+
+                {% if courseComplete == true %}
+                <div class="overlay"><a href="{{ url_for('certification') }}">Download Certificate! (placeholder)</a></div>
+                {% endif %}
             </span>
 
             <div id="navbar">
                 <a href="{{ url_for('home') }}">
                     <img src="{{ url_for('static', filename='assets/ui/home.svg') }}"class="navbar-icon">
                 </a>
-                <a href="{{ url_for('progress') }}">
-                    <img src="{{ url_for('static', filename='assets/ui/progress.svg') }}"class="navbar-icon">
+
+                <a href="{{ url_for('logout') }}">
+                    <img src="{{ url_for('static', filename='assets/ui/logout.svg') }}"class="navbar-icon">
                 </a>
             </div>
     </div>

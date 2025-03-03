@@ -53,6 +53,11 @@
                 {% set chapter_index = chapter_index + 1 %}
                 {% set ns.alt = not ns.alt %}
                 {% endfor %}
+                
+
+                {% if courseComplete == true %}
+                <div class="overlay"><a href="{{ url_for('certification') }}">Download Certificate! (placeholder)</a></div>
+                {% endif %}
             </span>
 
             <div id="navbar">
