@@ -98,7 +98,6 @@ label {
     padding-right: 15px;
     border-radius: 5px;
     margin-bottom: 20px;
-    font-size: 1.1rem;
 }
 
 h1 {
@@ -292,10 +291,12 @@ button {
     font-size: 1rem;
     margin: 0px;
     padding: 2px;
+    padding-right: 20px;
 }
 
 .dropdown a {
-    font-size: .9rem;
+    font-size: .95rem;
+    FONT-WEIGHT: 500;
 }
 
 .dropdown-content {
@@ -371,6 +372,10 @@ h2 {
     color: #ffffff;
 }
 
+#sidebar a {
+    padding-left: 8px;
+}
+
 #passValContainer {
     background-color: #b13b3b;
     color: #ffffff;
@@ -418,7 +423,8 @@ h4 {
     }
 
     #sidebar a {
-        font-size: .685rem;
+        font-size: .78rem;
+        padding-left: 8px;
     }
 
     #sidebar h4 {
@@ -460,19 +466,19 @@ h4 {
     .dropdown p {
         margin: 0px;
         padding: 0;
-        font-size: .7rem;
+        font-size: .83rem;
     }
 
     .dropdown a {
-        font-size: .7rem;
+        font-size: .74rem;
     }
 
     .dropdown-content {
         display: none;
         padding-left: 10px;
     }
-
-    p, li, a {
+    
+    a {
         font-size: .8rem;
     }
 
