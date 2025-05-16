@@ -1,25 +1,79 @@
-{% extends 'base-login.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Mazador</title>
 
-{% block head %}
-<title>OnGuard</title>
-{% endblock %}
+    <!-- CSS Framework Docs -> https://fomantic-ui.com/ -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.4/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.4/dist/semantic.min.js"></script>
 
-{% block body %}
-<div class="ver-container noisy">
-    <img src="{{ url_for('static', filename='assets/images/logo.png') }}" height="125px" width="312.5px">
+    <link rel="stylesheet" href="static/styles.css">
+
+    {% block head %}{% endblock %}
+</head>
+<body>
     
-    <br>
 
-    <a href="{{ url_for('login') }}" class="extend">
-        <button type="button" class="b b-alt">
-            Login
-        </button>
-    </a>
+    <!-- Loading mask and functionality -->
+    <script type="text/javascript">
+      window.onload=function() {
+        document.getElementById('loading-mask').style.display='none';
+      }
+    </script>
 
-    <a href="{{ url_for('register') }}" class="extend">
-        <button type="button" class="b b-alt">
-            Register
-        </button>
-    </a>
-</div>
-{% endblock %}
+    <div id="loading-mask">
+      <div class="ui active dimmer">
+        <div class="ui text loader">Loading</div>
+      </div>
+      <p></p>
+    </div>
+
+    <div class="ui left inverted visible vertical menu sidebar thin">
+        <a class="item" style="display: flex; justify-content: left; align-items: center;">
+            <img src="static/logo.png" class="ui image" style="height: 28px; margin-right: 4px; margin-bottom: 5px;">
+            <div class="header"><h2 style="color: white;">azador </h2></div>
+        </a>
+        <a class="item">
+          Home
+        </a>
+        <a class="item">
+          My Info
+        </a>
+        <a class="item">
+          Gradebook
+        </a>
+        <a class="item">
+          Assignments
+        </a>
+
+        <a class="item" style="margin-top: auto;"">
+            Logout
+        </a>
+    </div>
+    <div class="pusher">
+      {% block content %}{% endblock %}
+
+      <!-- Testing -->
+      <div class="ui raised basic segment center aligned">
+        <h1>Minuteman High School</h1>
+        <p><span class="ui large text">Welcome back, John Doe!</span></p>
+      </div>
+
+      <div class="ui basic horizontal segments">
+        <div class="ui segment">
+          <h2>Daily Announcements</h2>
+          <p>May 14, 2025</p>
+        </div>
+        <div class="ui segment">
+          <p></p>
+        </div>
+        <div class="ui segment">
+          <p></p>
+        </div>
+      </div>
+    </div>
+</body>
+</html>

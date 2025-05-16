@@ -1,0 +1,23 @@
+body {
+    background-image: url('placeholder-background.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    margin: 0;
+    overflow-x: hidden;
+}
+
+#loading-mask {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: white;
+    height: 100%;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 9999;
+}

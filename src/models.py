@@ -1,87 +1,96 @@
-from flask_sqlalchemy import *
-from flask_login import UserMixin
+from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
 
-db = SQLAlchemy() # Initiate sqlalchemy here because models need it first, later imported into app.py
+db = SQLAlchemy()
 
-class Users(UserMixin, db.Model):
-    """Users database model, main database to handle all the normal user data (specifically login)
-    Additionally, because the relationship is one-to-one, all course progress information is stored here."""
 
-    id = db.Column(db.Integer, primary_key=True)  # Unique identification ID for all user entries
-    username = db.Column(db.String(250), unique=True, nullable=False)
-    password = db.Column(db.String(250), nullable=False)
+class File(db.Model):
+    __tablename__ = 'files'
+    file_id = db.Column(db.Integer, primary_key=True)
+    filepath = db.Column(db.String)
 
-    fname = db.Column(db.String(250), nullable=False)
-    lname = db.Column(db.String(250), nullable=False)
+    # Relationships
+    users = db.relationship('User', backref='file', lazy=True)
+    classes = db.relationship('Class', backref='file', lazy=True)
 
-    cdate = db.Column(db.String(250), default="none")
 
-    cdate = db.Column(db.String(250),
-                         default="none") # completion date
+class User(db.Model):
+    __tablename__ = 'users'
+    id = db.Column(db.Integer, primary_key=True)
+    file_id = db.Column(db.Integer)
+    username = db.Column(db.String)
+    password = db.Column(db.String)
+    role = db.Column(db.String)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    # Article progress columns for all chapters
-    #   0 is unstarted, 1 is in progress, and 2 is completed
-    # Chapter 1
-    article_1_1 = db.Column(db.Integer, default=0)
-    article_1_2 = db.Column(db.Integer, default=0)
-    article_1_3 = db.Column(db.Integer, default=0)
+    # Relationships
+    enrolled_classes = db.relationship(
+        'Class',
+        secondary='class_enrollment',
+        back_populates='students'
+    )
 
-    # Chapter 2
-    article_2_1 = db.Column(db.Integer, default=0)
-    article_2_2 = db.Column(db.Integer, default=0)
-    article_2_3 = db.Column(db.Integer, default=0)
-    article_2_4 = db.Column(db.Integer, default=0)
+    teaching_classes = db.relationship(
+        'Class',
+        secondary='class_faculty',
+        back_populates='faculty'
+    )
 
-    # Chapter 3
-    article_3_1 = db.Column(db.Integer, default=0)
-    article_3_2 = db.Column(db.Integer, default=0)
-    article_3_3 = db.Column(db.Integer, default=0)
-    article_3_4 = db.Column(db.Integer, default=0)
+    grades = db.relationship('Gradebook', backref='user', lazy=True)
 
-    # Chapter 4
-    article_4_1 = db.Column(db.Integer, default=0)
-    article_4_2 = db.Column(db.Integer, default=0)
-    article_4_3 = db.Column(db.Integer, default=0)
-    article_4_4 = db.Column(db.Integer, default=0)
 
-    # Chapter 5
-    article_5_1 = db.Column(db.Integer, default=0)
-    article_5_2 = db.Column(db.Integer, default=0)
-    article_5_3 = db.Column(db.Integer, default=0)
-    article_5_4 = db.Column(db.Integer, default=0)
+class Class(db.Model):
+    __tablename__ = 'classes'
+    class_id = db.Column(db.Integer, primary_key=True)
+    faculty_id = db.Column(db.Integer)  # foreign-like ref via association table
+    file_id = db.Column(db.Integer, db.ForeignKey('files.file_id'))
+    name = db.Column(db.String)
 
-    # Chapter 6
-    article_6_1 = db.Column(db.Integer, default=0)
-    article_6_2 = db.Column(db.Integer, default=0)
-    article_6_3 = db.Column(db.Integer, default=0)
-    article_6_4 = db.Column(db.Integer, default=0)
+    # Relationships
+    assignments = db.relationship('Assignment', backref='class_', lazy=True)
 
-    # Chapter 7
-    article_7_1 = db.Column(db.Integer, default=0)
-    article_7_2 = db.Column(db.Integer, default=0)
-    article_7_3 = db.Column(db.Integer, default=0)
+    students = db.relationship(
+        'User',
+        secondary='class_enrollment',
+        back_populates='enrolled_classes'
+    )
 
-    # Chapter 8
-    article_8_1 = db.Column(db.Integer, default=0)
-    article_8_2 = db.Column(db.Integer, default=0)
-    article_8_3 = db.Column(db.Integer, default=0)
+    faculty = db.relationship(
+        'User',
+        secondary='class_faculty',
+        back_populates='teaching_classes'
+    )
 
-    # Chapter 9
-    article_9_1 = db.Column(db.Integer, default=0)
-    article_9_2 = db.Column(db.Integer, default=0)
-    article_9_3 = db.Column(db.Integer, default=0)
 
-    # Chapter 10
-    article_10_1 = db.Column(db.Integer, default=0)
-    article_10_2 = db.Column(db.Integer, default=0)
-    article_10_3 = db.Column(db.Integer, default=0)
+class Assignment(db.Model):
+    __tablename__ = 'assignments'
+    id = db.Column(db.Integer, primary_key=True)
+    class_id = db.Column(db.Integer, db.ForeignKey('classes.class_id'))
+    assignment_id = db.Column(db.Integer, unique=True)
+    name = db.Column(db.String)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    deadline = db.Column(db.DateTime)
+    role = db.Column(db.String)
 
-    # Chapter 11
-    article_11_1 = db.Column(db.Integer, default=0)
-    article_11_2 = db.Column(db.Integer, default=0)
-    article_11_3 = db.Column(db.Integer, default=0)
+    # Relationships
+    grades = db.relationship('Gradebook', backref='assignment', lazy=True)
 
-    # Chapter 12
-    article_12_1 = db.Column(db.Integer, default=0)
-    article_12_2 = db.Column(db.Integer, default=0)
-    article_12_3 = db.Column(db.Integer, default=0)
+
+class Gradebook(db.Model):
+    __tablename__ = 'gradebook'
+    id = db.Column(db.Integer, db.ForeignKey('users.id'), primary_key=True)
+    assignment_id = db.Column(db.Integer, db.ForeignKey('assignments.assignment_id'), primary_key=True)
+    grade = db.Column(db.Integer)
+
+
+class_enrollment = db.Table(
+    'class_enrollment',
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+    db.Column('class_id', db.Integer, db.ForeignKey('classes.class_id'), primary_key=True)
+)
+
+class_faculty = db.Table(
+    'class_faculty',
+    db.Column('user_id', db.Integer, db.ForeignKey('users.id'), primary_key=True),
+    db.Column('faculty_id', db.Integer, primary_key=True)  # Not a real FK, just as per DBML
+)

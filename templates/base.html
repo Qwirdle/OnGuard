@@ -1,29 +1,62 @@
 <!DOCTYPE html>
-{% autoescape true %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+    <title>Home - Mazador</title>
 
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ url_for('static', filename='assets/favicons/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='assets/favicons/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ url_for('static', filename='assets/favicons/favicon-16x16.png') }}">
-    <link rel="manifest" href="/site.webmanifest">
+    <!-- CSS Framework Docs -> https://fomantic-ui.com/ -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.4/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.4/dist/semantic.min.js"></script>
+
+    <link rel="stylesheet" href="../static/styles.css">
+
+    <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
+
     {% block head %}{% endblock %}
 </head>
 <body>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-        {% if messages %}
-          <!-- span to avoid weird div props -->
-          <span>
-          {% for category, message in messages %}
-            <div class="flash-base {{ category }}">{{ message }}</div>
-          {% endfor %}
-          </span>
-        {% endif %}
-    {%  endwith %}
-    {% block body %}{% endblock %} 
+    
+
+    <!-- Loading mask and functionality -->
+    <script type="text/javascript">
+      window.onload=function() {
+        document.getElementById('loading-mask').style.display='none';
+      }
+    </script>
+
+    <div id="loading-mask">
+      <div class="ui active dimmer">
+        <div class="ui text loader">Loading</div>
+      </div>
+      <p></p>
+    </div>
+
+    <div class="ui left inverted visible vertical menu sidebar thin fixed overlay">
+        <a class="item" style="display: flex; justify-content: left; align-items: center;" href="{{ url_for('home') }}">
+            <img src="../static/logo.jpg" class="ui image" style="height: 28px; margin-right: 4px; margin-bottom: 5px;">
+            <div class="header"><h2 style="color: white;">azador </h2></div>
+        </a>
+        <a class="item" href="{{ url_for('home') }}">
+          Home
+        </a>
+        <a class="item">
+          My Info
+        </a>
+        <a class="item">
+          Gradebook
+        </a>
+        <a class="item">
+          Assignments
+        </a>
+
+        <a class="item" style="margin-top: auto;"">
+            Logout
+        </a>
+    </div>
+    <div class="pusher">
+      {% block content %}{% endblock %}
+    </div>
 </body>
-{% endautoescape %}
 </html>

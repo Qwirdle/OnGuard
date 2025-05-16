@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %} - Mazador</title>
+
+    <!-- CSS Framework Docs -> https://fomantic-ui.com/ -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.4/dist/semantic.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.9.4/dist/semantic.min.js"></script>
+
+    <link rel="stylesheet" href="../static/styles.css">
+
+    <link rel="icon" type="image/x-icon" href="../static/favicon.ico">
+
+    {% block head %}{% endblock %}
+</head>
+<body>
+    <!-- Loading mask and functionality -->
+    <script type="text/javascript">
+        window.onload=function() {
+          document.getElementById('loading-mask').style.display='none';
+        }
+      </script>
+  
+      <div id="loading-mask">
+        <div class="ui active dimmer">
+          <div class="ui text loader">Loading</div>
+        </div>
+        <p></p>
+      </div>
+
+    {% block content %}{% endblock %}
+</body>
+</html>

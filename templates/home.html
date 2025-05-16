@@ -1,29 +1,143 @@
-{% extends 'base-course.html' %}
-
-{% block head %}
-<title>OnGuard - Home</title>
-{% endblock %}
+{% extends 'base.html' %}
 
 {% block content %}
-<div id="center-inner" class="background">
-<div class="centerText barText left-align">
-<h2>Welcome to OnGuard!</h2>
-<p>OnGuard is an online workplace cyber security course which educates workers on how to stay safe using a computer and the internet,
-    for your own security and your companys. This course will take you around 3 to 6 hours, and by the end of it you will be knowledgeable
-    in maintaining proper cyber safety. Each chapter will take you 10 to 30 minutes, and at the end of it you will be quized on what you just
-    learned. At the end of the course, you will take a final test, and after that you will be awarded a certificate of completion.</p>
-<h2>The Developers of OnGuard</h2>
-<p>OnGuard is developed by Jasper Haas, Ian Cunha, and Evan Curley, all of which competing as a team for the SkillsUSA leadership competition.
-    This project is their project for this competition, and it has been created out of a passion for cyber security and in an effort to increase
-    the general level of security knowledge in the workforce.
-</p>
-<img src="{{ url_for('static', filename='assets/images/theTeam.jpg') }}">
-<br>
-<h2>Using The Course</h2>
-<p>To begin the course, go to the sidebar, and under the Coursework section, hover over <i>1.0 - Introduction to Cybersecurity</i>. You will
-    continue through the course by continuesly the next button on the bottom of each article. 
-    Under this section, select the first article, <i>1.1 Importance of Cybersecurity in the Workplace</i> to begin.</p>
-<img src="{{ url_for('static', filename='assets/gifs/select-article-gif-tut.gif') }}" style="border-radius: 5px; margin: 5px; width: 45%; height: 45%;"><br>
+<!-- BLOCKED OUT FOR TESTING
+<div class="ui raised basic segment inverted" style="background-color: #1b1c1d;">
+    <h1>{{ SCHOOL_NAME }}</h1>
+    <p><span class="ui large text">Welcome back, John Doe!</span></p>
 </div>
+-->
+
+<br>
+
+<div class="ui container">
+
+  <div class="ui centered grid">
+    <div class="fifteen wide column">
+      
+      <div class="ui segment raised center aligned">
+        <h2>{{ SCHOOL_NAME }}</h2>
+      </div>
+
+      <div class="ui segment raised bottom attached">
+        <h2>Announcements</h2>
+        <div class="ui scrolling container" style="max-height: 300px; overflow-y: auto;">
+          <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+          <p>Te eum doming eirmod, nominati pertinacia argumentum ad his. Ex eam alia facete scriptorem, est autem aliquip detraxit at. Usu ocurreret referrentur at, cu epicurei appellantur vix. Cum ea laoreet recteque electram, eos choro alterum definiebas in. Vim dolorum definiebas an. Mei ex natum rebum iisque.</p>
+          <p>Audiam quaerendum eu sea, pro omittam definiebas ex. Te est latine definitiones. Quot wisi nulla ex duo. Vis sint solet expetenda ne, his te phaedrum referrentur consectetuer. Id vix fabulas oporteat, ei quo vide phaedrum, vim vivendum maiestatis in.</p>
+          <p>Eu quo homero blandit intellegebat. Incorrupte consequuntur mei id. Mei ut facer dolores adolescens, no illum aperiri quo, usu odio brute at. Qui te porro electram, ea dico facete utroque quo. Populo quodsi te eam, wisi everti eos ex, eum elitr altera utamur at. Quodsi convenire mnesarchum eu per, quas minimum postulant per id.</p>
+          <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Vestibulum tortor quam, feugiat vitae, ultricies eget, tempor sit amet, ante. Donec eu libero sit amet quam egestas semper. Aenean ultricies mi vitae est. Mauris placerat eleifend leo.</p>
+          <p>Te eum doming eirmod, nominati pertinacia argumentum ad his. Ex eam alia facete scriptorem, est autem aliquip detraxit at. Usu ocurreret referrentur at, cu epicurei appellantur vix. Cum ea laoreet recteque electram, eos choro alterum definiebas in. Vim dolorum definiebas an. Mei ex natum rebum iisque.</p>
+          <p>Audiam quaerendum eu sea, pro omittam definiebas ex. Te est latine definitiones. Quot wisi nulla ex duo. Vis sint solet expetenda ne, his te phaedrum referrentur consectetuer. Id vix fabulas oporteat, ei quo vide phaedrum, vim vivendum maiestatis in.</p>
+          <p>Eu quo homero blandit intellegebat. Incorrupte consequuntur mei id. Mei ut facer dolores adolescens, no illum aperiri quo, usu odio brute at. Qui te porro electram, ea dico facete utroque quo. Populo quodsi te eam, wisi everti eos ex, eum elitr altera utamur at. Quodsi convenire mnesarchum eu per, quas minimum postulant per id.</p>
+        </div>
+      </div>
+
+      <div class="ui segment raised">
+        <h2>Grades</h2>
+        <table class="ui selectable table single line fixed unstackable">
+          <thead>
+            <tr>
+              <th class="left aligned">Block</th>
+              <th class="left aligned">Class</th>
+              <th class="left aligned">Teachers</th>
+              <th class="right aligned">Number of Absences</th>
+              <th class="right aligned">Grade</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="left aligned">A</td>
+              <td class="left aligned">Math 101</td>
+              <td class="left aligned">Mr. Johnson</td>
+              <td class="right aligned">2</td>
+              <td class="right aligned">A-</td>
+            </tr>
+            <tr>
+              <td class="left aligned">B</td>
+              <td class="left aligned">English Literature</td>
+              <td class="left aligned">Ms. Rivera</td>
+              <td class="right aligned">0</td>
+              <td class="right aligned">B+</td>
+            </tr>
+            <tr>
+              <td class="left aligned">C</td>
+              <td class="left aligned">Physics</td>
+              <td class="left aligned">Dr. Smith</td>
+              <td class="right aligned">1</td>
+              <td class="right aligned">A</td>
+            </tr>
+            <tr>
+              <td class="left aligned">D</td>
+              <td class="left aligned">World History</td>
+              <td class="left aligned">Mr. Lee</td>
+              <td class="right aligned">3</td>
+              <td class="right aligned">B</td>
+            </tr>
+            <tr>
+              <td class="left aligned">E</td>
+              <td class="left aligned">Computer Science</td>
+              <td class="left aligned">Ms. Zhang</td>
+              <td class="right aligned">0</td>
+              <td class="right aligned">A+</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="ui segment raised">
+        <h2>To Do</h2>
+        <table class="ui selectable table single line fixed unstackable">
+          <thead>
+            <tr>
+              <th class="left aligned">Due Date</th>
+              <th class="left aligned">Class</th>
+              <th class="left aligned">Assignment</th>
+              <th class="left aligned">Teacher</th>
+              <th class="right aligned">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="left aligned">May 17</td>
+              <td class="left aligned">Math 101</td>
+              <td class="left aligned">Algebra Worksheet</td>
+              <td class="left aligned">Mr. Johnson</td>
+              <td class="right aligned">Not Started</td>
+            </tr>
+            <tr>
+              <td class="left aligned">May 18</td>
+              <td class="left aligned">English Literature</td>
+              <td class="left aligned">Poetry Analysis</td>
+              <td class="left aligned">Ms. Rivera</td>
+              <td class="right aligned">In Progress</td>
+            </tr>
+            <tr>
+              <td class="left aligned">May 19</td>
+              <td class="left aligned">Physics</td>
+              <td class="left aligned">Lab Report: Motion</td>
+              <td class="left aligned">Dr. Smith</td>
+              <td class="right aligned">Not Started</td>
+            </tr>
+            <tr>
+              <td class="left aligned">May 20</td>
+              <td class="left aligned">World History</td>
+              <td class="left aligned">Essay on Ancient Rome</td>
+              <td class="left aligned">Mr. Lee</td>
+              <td class="right aligned">Completed</td>
+            </tr>
+            <tr>
+              <td class="left aligned">May 21</td>
+              <td class="left aligned">Computer Science</td>
+              <td class="left aligned">Java Project Part 1</td>
+              <td class="left aligned">Ms. Zhang</td>
+              <td class="right aligned">In Progress</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
 </div>
 {% endblock %}
